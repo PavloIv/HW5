@@ -89,6 +89,24 @@ public class PetUtil {
             return "Pet with status " + status + " not found";
         }
     }
+    public int updateForm(int id, String name, String status) {
+        URI uri = URI.create(PET_ADDRESS + "/" + id + "?name=" + name + "&status=" + status );
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(uri)
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .header("Content-type", "application/x-www-form-urlencoded")
+                .build();
+
+        HttpResponse<String> response = null;
+        try {
+            response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        assert response != null;
+        return response.statusCode();
+    }
 
     public int deletePet(int id) {
         URI uri = URI.create(PET_ADDRESS + "/" + id);

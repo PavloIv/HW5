@@ -19,7 +19,7 @@ public class PetState extends CliState {
         System.out.println("'update' for update pet");
         System.out.println("'findId' for find pet with id ");
         System.out.println("'findStatus' for find pet with status ");
-        System.out.println("'updateById' for update pet with id");
+        System.out.println("'updateForm' for update pet with id");
         System.out.println("'delete' for delete pet with id");
 
         petUtil = new PetUtil();
@@ -43,6 +43,9 @@ public class PetState extends CliState {
             case "findStatus":
                 findForStatus();
                 break;
+            case "updateForm":
+                updateForm();
+                break;
             case "delete":
                 delete();
                 break;
@@ -59,7 +62,6 @@ public class PetState extends CliState {
             init();
         }
     }
-
     @Override
     protected void create() {
         System.out.println("Please,write pet id");
@@ -171,6 +173,17 @@ public class PetState extends CliState {
         String petStatus = fsm.writeStatus();
 
         System.out.println(petUtil.findPetForStatus(petStatus));
+    }
+
+    private void updateForm(){
+        System.out.println("Please,write pet id");
+        int petId = fsm.writeDigit();
+        System.out.println("Please,write pet name");
+        String petName = fsm.getScanner().nextLine();
+        System.out.println("Please,write pet status");
+        String petStatus = fsm.writeStatus();
+
+        System.out.println(petUtil.updateForm(petId,petName,petStatus));
     }
 
     @Override

@@ -16,6 +16,9 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:1.18.24"
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:2.9.1'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime
+    implementation 'org.apache.httpcomponents:httpmime:4.3.1'
+
 }
 
 test {
