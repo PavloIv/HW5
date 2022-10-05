@@ -15,6 +15,7 @@ public class PetState extends CliState {
     @Override
     public void init() {
         System.out.println("Please, write command with list:");
+        System.out.println("'upload' for upload image your pet");
         System.out.println("'create' for create new pet");
         System.out.println("'update' for update pet");
         System.out.println("'findId' for find pet with id ");
@@ -31,7 +32,10 @@ public class PetState extends CliState {
     private void startPetCommandLoop(String command) {
         boolean back = false;
         switch (command) {
-            case "create":
+            case "upload":
+                upload();
+                break;
+                case "create":
                 create();
                 break;
             case "update":
@@ -62,6 +66,22 @@ public class PetState extends CliState {
             init();
         }
     }
+
+    private void upload() {
+        System.out.println("Please,write pet id");
+        int petId = fsm.writeDigit();
+        System.out.println("Please,write address to photo");
+        String photoAddress = fsm.getScanner().nextLine();
+        System.out.println("Please,photo name");
+        String photoName = fsm.getScanner().nextLine();
+        System.out.println("Please,write photo format");
+        String photoFormat = fsm.getScanner().nextLine();
+
+        String fullAddress = photoAddress + "\\" + photoName + "." + photoFormat;
+
+        petUtil.uploadImage(petId,fullAddress);
+    }
+
     @Override
     protected void create() {
         System.out.println("Please,write pet id");
